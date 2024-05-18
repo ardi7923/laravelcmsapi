@@ -22,7 +22,7 @@
     },
     "extra": {
         "branch-alias": {
-          "master": "0.0"
+          "dev-master": "master-dev"
         },
         "laravel": {
           "providers": [
@@ -30,7 +30,7 @@
           ],
           "aliases": {
             "Crud": "Ardi7923\\Laravelcmsapi\\Crud",
-            "ResponseService": "Ardi7923\\Laravelcmsapi\\ResponseService"
+            "ResponseService": "Ardi7923\\Laravelcmsapi\\REspo"
           }
         }
       }
