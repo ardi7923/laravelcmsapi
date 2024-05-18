@@ -13,9 +13,9 @@ class LaravelcmsapiServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-//        $this->publishes([
-//            __DIR__.'/resources/lang' => resource_path('lang/en'),
-//        ]);
+       $this->publishes([
+           __DIR__.'/Resources/swagger' => public_path('swagger'),
+       ]);
 //
 //        $this->publishes([
 //            __DIR__.'/assets/js/share' => public_path('js'),
