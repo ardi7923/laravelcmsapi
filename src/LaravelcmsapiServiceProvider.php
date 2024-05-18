@@ -2,6 +2,7 @@
 
 namespace Ardi7923\Laravelcmsapi;
 
+use Illuminate\Support\ServiceProvider;
 
 class LaravelcmsapiServiceProvider extends ServiceProvider
 {
