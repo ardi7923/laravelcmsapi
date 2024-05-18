@@ -182,9 +182,6 @@ if (!function_exists('percen')) {
     }
 }
 
-
-
-
 if (!function_exists('get_age')) {
 
     function get_age($year)

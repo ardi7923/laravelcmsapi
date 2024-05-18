@@ -1,38 +1,37 @@
 {
-  "name": "ardi/Laravelcmsapi",
-  "description": "cms crud for laravel API",
-  "license": "MIT",
-  "authors": [
-    {
-      "name": "ardi7923",
-      "email": "ardiirawan777@gmail.com"
-    }
-  ],
-  "require": {
-    "php": "^8.1",
-    "intervention/image": "^2.4"
-
-  },
-  "autoload": {
-    "psr-4": {
-      "Ardi7923\\Laravelcmsapi\\": "src/"
+    "name": "ardi/laravelcmsapi",
+    "description": "cms crud for laravel api",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "ardi7923",
+            "email": "ardiirawan777@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "intervention/image": "^2.4"
     },
-    "files": [
-      "src/Helpers/Helper.php"
-    ]
-  },
-  "extra": {
-    "branch-alias": {
-      "master": "0.0"
+    "autoload": {
+        "psr-4": {
+            "Ardi7923\\Laravelcmsapi\\": "src/"
+        },
+        "files": [
+           "src/Helpers/Helper.php" 
+        ]
     },
-    "laravel": {
-      "providers": [
-        "Ardi7923\\Laravelcmsapi\\LaravelcmsapiServiceProvider"
-      ],
-      "aliases": {
-        "CrudAjax": "Ardi7923\\Laravelcmsapi\\CrudAjax",
-        "CrudAjaxSet": "Ardi7923\\Laravelcmsapi\\CrudAjaxSet"
+    "extra": {
+        "branch-alias": {
+          "dev-master": "1.0-dev"
+        },
+        "laravel": {
+          "providers": [
+            "Ardi7923\\Laravelcmsapi\\LaravelcmsServiceapiProvider"
+          ],
+          "aliases": {
+            "CrudAjax": "Ardi7923\\Laravelcmsapi\\CrudAjax",
+            "CrudAjaxSet": "Ardi7923\\Laravelcmsapi\\CrudAjaxSet"
+          }
+        }
       }
-    }
-  }
 }
