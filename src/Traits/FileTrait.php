@@ -1,6 +1,6 @@
 <?php
 
-namespace Ardi7923\Laravelcms\Traits;
+namespace Ardi7923\Laravelcmsapi\Traits;
 
 use Storage;
 use File;
