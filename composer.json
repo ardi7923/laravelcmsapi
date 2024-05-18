@@ -26,7 +26,7 @@
         },
         "laravel": {
           "providers": [
-            "Ardi7923\\Laravelcmsapi\\LaravelcmsServiceapiProvider"
+            "Ardi7923\\Laravelcmsapi\\LaravelcmsapiServiceProvider"
           ],
           "aliases": {
             "Crud": "Ardi7923\\Laravelcmsapi\\Crud",
