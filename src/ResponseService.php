@@ -1,6 +1,6 @@
 <?php
 
-namespace Ardi7923\Laravelcmsapi\Services;
+namespace Ardi7923\Laravelcmsapi;
 
 use Ardi7923\Laravelcmsapi\Traits\OptimizationTool;
 
