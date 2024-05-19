@@ -3,8 +3,8 @@
 namespace Ardi7923\Laravelcmsapi;
 
 use App\Http\Controllers\Controller;
-use Ardi7923\Laravelcmsapi\src\Utilities\RequestUtility;
-use Ardi7923\Laravelcmsapi\src\Traits\FileTrait;
+use Ardi7923\Laravelcmsapi\Utilities\RequestUtility;
+use Ardi7923\Laravelcmsapi\Traits\FileTrait;
 
 class Crud extends Controller
 {
