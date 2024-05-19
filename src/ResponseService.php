@@ -2,7 +2,7 @@
 
 namespace Ardi7923\Laravelcmsapi\Services;
 
-use Ardi7923\Traits\OptimizationTool;
+use Ardi7923\Laravelcmsapi\Traits\OptimizationTool;
 
 class ResponseService
 {
