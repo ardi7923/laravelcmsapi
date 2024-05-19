@@ -45,6 +45,7 @@ class CrudApi Extends Crud
 
             return $response->setCode(200)
                 ->setMsg("Data Berhasil Disimpan")
+                ->setData($this->request)
                 ->get();
 
         } catch (\Exception $e) {
