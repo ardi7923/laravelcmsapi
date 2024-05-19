@@ -29,8 +29,8 @@
             "Ardi7923\\Laravelcmsapi\\LaravelcmsapiServiceProvider"
           ],
           "aliases": {
-            "Crud": "Ardi7923\\Laravelcmsapi\\Crud",
-            "ResponseService": "Ardi7923\\Laravelcmsapi\\REspo"
+            "CrudApi": "Ardi7923\\Laravelcmsapi\\CrudApi",
+            "ResponseService": "Ardi7923\\Laravelcmsapi\\ResponseService"
           }
         }
       }
