@@ -45,12 +45,13 @@ class CrudApi Extends Crud
 
             return $response->setCode(200)
                 ->setMsg("Data Berhasil Disimpan")
-                ->success();
+                ->get();
+
         } catch (\Exception $e) {
 
             $errors = [$e->getMessage()];
 
-            return $response->setErrors($errors)->error();
+            return $response->setErrors($errors)->get();
         }
     }
 
@@ -74,11 +75,11 @@ class CrudApi Extends Crud
 
             return $response->setCode(200)
                 ->setMsg("Data Berhasil Diubah")
-                ->success();
+                ->get();
         } catch (\Exception $e) {
 
             $errors = [$e->getMessage()];
-            return $response->setErrors($errors)->error();
+            return $response->setErrors($errors)->get();
         }
     }
     // Delete =======================================
@@ -113,11 +114,11 @@ class CrudApi Extends Crud
 
             return $response->setCode(200)
                 ->setMsg("Data Berhasil Dihapus")
-                ->success();
+                ->get();
         } catch (\Exception $e) {
 
             $errors = [$e->getMessage()];
-            return $response->setErrors($errors)->error();
+            return $response->setErrors($errors)->get();
         }
     }
 }
