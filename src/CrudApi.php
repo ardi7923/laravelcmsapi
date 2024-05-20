@@ -7,8 +7,8 @@ use ResponseService;
 class CrudApi Extends Crud
 {
     private $facade = null,
-            $resource = null,
-            $params = [];
+        $resource = null,
+        $params = [];
 
     public function __construct()
     {
@@ -95,7 +95,7 @@ class CrudApi Extends Crud
         if($this->resource){
             return $this->response->setCode(200)
                 ->setMsg("OK")
-                ->setData(remove_links_paginate($this->resource::collection($datas)->response()->getData()))
+                ->setData(($all == true) ? $this->resource::collection($datas)->response()->getData() : remove_links_paginate($this->resource::collection($datas)->response()->getData()))
                 ->get();
         }else{
             return $this->response->setCode(200)
