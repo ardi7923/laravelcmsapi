@@ -67,11 +67,17 @@ class CrudApi Extends Crud
                 }
             }
 
-            $response = new ResponseService();
-            return $response->setCode(200)
-                ->setMsg("OK")
-                ->setData($datas)
-                ->get();
+            if($this->resource){
+                return $this->response->setCode(200)
+                    ->setMsg("OK")
+                    ->setData(($all == true) ? $this->resource::collection($datas)->response()->getData() : remove_links_paginate($this->resource::collection($datas)->response()->getData()))
+                    ->get();
+            }else{
+                return $this->response->setCode(200)
+                    ->setMsg("OK")
+                    ->setData($datas)
+                    ->get();
+            }
         }
 
         if(count($this->filters)){
