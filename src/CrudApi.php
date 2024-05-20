@@ -150,7 +150,6 @@ class CrudApi Extends Crud
     // update ========================================
     public function change($data = [])
     {
-
         try {
 
             if ($this->facade == null) {
@@ -177,7 +176,6 @@ class CrudApi Extends Crud
     // Delete =======================================
     public function delete()
     {
-
         try {
 
             if ($this->facade == null) {

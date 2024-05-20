@@ -13,7 +13,7 @@ class Crud extends Controller
 
     protected $model;
     protected $validator;
-    
+
 
     public function __construct()
     {
@@ -22,7 +22,5 @@ class Crud extends Controller
         if($this->validator){
             $this->validator = new $this->validator;
         }
-
-        
     }
 }
