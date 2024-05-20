@@ -189,3 +189,102 @@ if (!function_exists('get_age')) {
         return now()->format("Y") - $year;
     }
 }
+
+if (!function_exists('change_wrap_pagination')) {
+    /**
+     * Returns a indonesian format currency
+     *
+     * @param int value
+     * @param int decimal
+     *
+     *
+     * @return string a string in indonesian currency format
+     *
+     * */
+    function change_wrap_pagination($data, $new_name)
+    {
+        $collect = collect($data);
+
+        if($collect->has('data')){
+            $collect[$new_name] = $collect['data'];
+            $collect->forget('data');
+        }
+
+        return $collect->toArray();
+    }
+}
+
+if (!function_exists('wrap_pagination')) {
+    /**
+     * Returns a indonesian format currency
+     *
+     * @param int value
+     * @param int decimal
+     *
+     *
+     * @return string a string in indonesian currency format
+     *
+     * */
+    function wrap_pagination($data)
+    {
+        $collect = collect($data);
+
+
+        $collect['links'] = [
+            'first' => $collect['first_page_url'],
+            'prev' => $collect['prev_page_url'],
+            'next' => $collect['next_page_url'],
+            'last' => $collect['last_page_url'],
+        ];
+
+        $collect['meta'] = [
+            'current_page' => $collect['current_page'],
+            'from' => $collect['from'],
+            'last_page' => $collect['last_page'],
+            'path' => $collect['path'],
+            'per_page' => $collect['per_page'],
+            'to' => $collect['to'],
+            'total' => $collect['total'],
+        ];
+
+        $collect->forget('first_page_url');
+        $collect->forget('prev_page_url');
+        $collect->forget('next_page_url');
+        $collect->forget('last_page_url');
+        $collect->forget('last_page');
+
+        $collect->forget('current_page');
+        $collect->forget('from');
+        $collect->forget('path');
+        $collect->forget('per_page');
+        $collect->forget('to');
+        $collect->forget('total');
+
+
+        return $collect->toArray();
+    }
+}
+
+if (!function_exists('remove_links_paginate')) {
+    /**
+     * Returns a indonesian format currency
+     *
+     * @param int value
+     * @param int decimal
+     *
+     *
+     * @return string a string in indonesian currency format
+     *
+     * */
+    function remove_links_paginate($data)
+    {
+        $collect = collect($data);
+        $meta = collect($collect['meta']);
+
+        $meta->forget('links');
+        $collect->forget('meta');
+        $collect['meta'] = $meta;
+
+        return $collect->toArray();
+    }
+}

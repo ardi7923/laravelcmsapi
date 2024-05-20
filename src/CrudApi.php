@@ -7,6 +7,7 @@ use ResponseService;
 class CrudApi Extends Crud
 {
     private $facade = null,
+            $resource = null,
             $params = [];
 
     public function __construct()
@@ -21,16 +22,106 @@ class CrudApi Extends Crud
         return $this;
     }
 
+    public function setResource($resource)
+    {
+        $this->resource = $resource;
+        return $this;
+    }
+
+
     public function setParams($params)
     {
         $this->params = $params;
         return $this;
     }
 
+    // GET Data ==========================
+    public function getDatas($data = [])
+    {
+
+        $limit = $this->request->limit ?? 10;
+        $keyword = $this->request->keyword;
+        $all = $this->request->all;
+
+        $datas = $this->model::query();
+
+        if ($keyword) {
+            if(count($this->filters)){
+                foreach ($this->filters as $key => $value) {
+                    if($key == 0){
+                        $datas = $datas->where($value,'like','%'.$keyword.'%');
+                    }else{
+                        $datas = $datas->orWhere($value,'like','%'.$keyword.'%');
+                    }
+                }
+            }
+
+
+            if ($all === true || $all == "true") {
+                $datas = $datas->get();
+            } else {
+                if($this->resource) {
+                    $datas = $datas->paginate($limit);
+                }else{
+                    $datas = wrap_pagination($datas->paginate($limit));
+                }
+            }
+
+            $response = new ResponseService();
+            return $response->setCode(200)
+                ->setMsg("OK")
+                ->setData($datas)
+                ->get();
+        }
+
+        if(count($this->filters)){
+            foreach ($this->filters as $key => $value) {
+                if($this->request->$value){
+                    $datas = $datas->where($value,$this->request->$value);
+                }
+            }
+        }
+
+        if ($all === true || $all == "true") {
+            $datas = $datas->get();
+        } else {
+            if($this->resource) {
+                $datas = $datas->paginate($limit);
+            }else{
+                $datas = wrap_pagination($datas->paginate($limit));
+            }
+        }
+
+        if($this->resource){
+            return $this->response->setCode(200)
+                ->setMsg("OK")
+                ->setData(remove_links_paginate($this->resource::collection($datas)->response()->getData()))
+                ->get();
+        }else{
+            return $this->response->setCode(200)
+                ->setMsg("OK")
+                ->setData($datas)
+                ->get();
+        }
+
+    }
+
+    // GET Data Detail ==========================
+    public function getDetail()
+    {
+        $data = $this->model->where($this->InitializeParams($this->params))->firstOrFail();
+
+
+        return $this->response->setCode(200)
+            ->setMsg("OK")
+            ->setData($data)
+            ->get();
+    }
+
     // save method =========================================
     public function save($data = [])
     {
-        $response     = new ResponseService;
+
         try {
 
             if ($this->facade == null) {
@@ -43,7 +134,7 @@ class CrudApi Extends Crud
                 $this->facade->save($this->request);
             }
 
-            return $response->setCode(200)
+            return $this->response->setCode(200)
                 ->setMsg("Data Berhasil Disimpan")
                 ->setData($this->request->all())
                 ->get();
@@ -52,14 +143,13 @@ class CrudApi Extends Crud
 
             $errors = [$e->getMessage()];
 
-            return $response->setErrors($errors)->get();
+            return $this->response->setErrors($errors)->get();
         }
     }
 
     // update ========================================
     public function change($data = [])
     {
-        $response     = new ResponseService;
 
         try {
 
@@ -74,20 +164,19 @@ class CrudApi Extends Crud
                 $this->facade->update($this->request, $this->params);
             }
 
-            return $response->setCode(200)
+            return $this->response->setCode(200)
                 ->setMsg("Data Berhasil Diubah")
                 ->setData($this->request->all())
                 ->get();
         } catch (\Exception $e) {
 
             $errors = [$e->getMessage()];
-            return $response->setErrors($errors)->get();
+            return $this->response->setErrors($errors)->get();
         }
     }
     // Delete =======================================
     public function delete()
     {
-        $response = new ResponseService;
 
         try {
 
@@ -114,13 +203,13 @@ class CrudApi Extends Crud
                 $this->facade->delete($this->InitializeParams($this->params));
             }
 
-            return $response->setCode(200)
+            return $this->response->setCode(200)
                 ->setMsg("Data Berhasil Dihapus")
                 ->get();
         } catch (\Exception $e) {
 
             $errors = [$e->getMessage()];
-            return $response->setErrors($errors)->get();
+            return $this->response->setErrors($errors)->get();
         }
     }
 }
